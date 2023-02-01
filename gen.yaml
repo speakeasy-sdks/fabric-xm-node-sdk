@@ -1,0 +1,4 @@
+typescript:
+    version: 2.0.0
+    packagename: '@fabric/xm-sdk'
+    author: vesselapi
