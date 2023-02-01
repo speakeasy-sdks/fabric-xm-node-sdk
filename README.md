@@ -1,4 +1,8 @@
-# @fabric/xm-sdk
+# Fabric XM Node SDK (V2)
+
+Fabric's Experience Manager (XM) enables you to design, implement, and optimize omnichannel e-commerce experiences, without having to code. With XM, you can easily add parent and child categories through our intuitive UI to create your website navigation, and seamlessly integrate with our APIs for dynamic navigation rendering on your store front. In addition, developers can implement agile design by creating reusable design components and use one set of data and APIs for every channel.
+
+API docs can be found [here](https://knowledgebase.fabric.inc/docs/openapi/xm/v2/reference/)
 
 <!-- Start SDK Installation -->
 ## SDK Installation
@@ -15,6 +19,10 @@ npm add @fabric/xm-sdk
 yarn add @fabric/xm-sdk
 ```
 <!-- End SDK Installation -->
+
+## Authentication 
+
+For more details on getting access to the Fabric API please see [here](https://knowledgebase.fabric.inc/docs/developer-portal/xm-developer-guide/)
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
