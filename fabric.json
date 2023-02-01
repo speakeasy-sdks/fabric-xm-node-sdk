@@ -1,0 +1,1497 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "2.0.0",
+    "description": "fabric's Experience Manager (XM) enables you to design, implement, and optimize omnichannel e-commerce experiences, without having to code. With XM, you can easily add parent and child categories through our intuitive UI to create your website navigation, and seamlessly integrate with our APIs for dynamic navigation rendering on your store front. In addition, developers can implement agile design by creating reusable design components and use one set of data and APIs for every channel.",
+    "title": "XM",
+    "contact": {
+      "email": "support@fabric.inc"
+    },
+    "license": {
+      "name": "fabric Inc",
+      "url": "https://fabric.inc/privacy-policy"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://cdn.xm.fabric.inc/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Pages",
+      "description": "XM Pages API allows you to fetch all the live pages, or a live page by a specific URL"
+    },
+    {
+      "name": "Global Components",
+      "description": "XM Global Components API allows you to fetch all the live global component data"
+    },
+    {
+      "name": "Menu",
+      "description": "XM Menu API allows you to fetch menus and their items"
+    }
+  ],
+  "paths": {
+    "/v2/pages/live": {
+      "get": {
+        "summary": "Retrieves Live Pages For Specified Channels",
+        "description": "Returns a list of all the live pages for the specified channels",
+        "operationId": "getLivePagesV2",
+        "tags": [
+          "Pages"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "The number of items to omit before collecting the resulting set",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The total number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "in": "query",
+            "name": "channels",
+            "description": "A comma-separated list of channel ids",
+            "schema": {
+              "type": "string",
+              "default": "12"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/XSiteContext"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "200 response object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "The status message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "The data object holding the query information and the list of live page versions",
+                      "properties": {
+                        "query": {
+                          "type": "object",
+                          "description": "The query information",
+                          "properties": {
+                            "limit": {
+                              "type": "integer",
+                              "description": "The maximum number of results that were attempted to be retrieved"
+                            },
+                            "offset": {
+                              "type": "integer",
+                              "description": "The number of items omitted before collecting the resulting set"
+                            },
+                            "count": {
+                              "type": "integer",
+                              "description": "The total number of results returned"
+                            },
+                            "channels": {
+                              "type": "array",
+                              "description": "The channel id(s) used to filter the live pages",
+                              "items": {
+                                "type": "string",
+                                "description": "A channel id"
+                              }
+                            }
+                          }
+                        },
+                        "livePages": {
+                          "type": "array",
+                          "description": "The array of live page versions",
+                          "items": {
+                            "type": "object",
+                            "description": "The live page version details",
+                            "allOf": [
+                              {
+                                "$ref": "#/components/schemas/PageVersion"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "page": {
+                                    "allOf": [
+                                      {
+                                        "$ref": "#/components/schemas/Page"
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "typeId": {
+                                            "type": "string",
+                                            "description": "The database id for the page type that is linked to the page"
+                                          },
+                                          "typeName": {
+                                            "type": "string",
+                                            "description": "The name of the page type"
+                                          },
+                                          "typeUrl": {
+                                            "type": "string",
+                                            "description": "The url associated with the page type"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "LivePagesExist": {
+                    "summary": "Live Pages Exist",
+                    "value": {
+                      "message": "List of pages with queryParams {\"channels\":\"02SZCA,00SZAU\",\"offset\":0,\"limit\":20}",
+                      "data": {
+                        "query": {
+                          "limit": 20,
+                          "offset": 0,
+                          "count": 1,
+                          "channels": [
+                            "02SZCA",
+                            "00SZAU"
+                          ]
+                        },
+                        "livePages": [
+                          {
+                            "_id": "613a76a1fa9449000f6c36c3",
+                            "isArchived": false,
+                            "name": "Default",
+                            "channel": [
+                              12
+                            ],
+                            "channels": [
+                              "00SZAU",
+                              "02SZCA"
+                            ],
+                            "createdAt": "2021-09-09T21:03:29.712Z",
+                            "updatedAt": "2021-10-14T20:31:47.369Z",
+                            "components": [
+                              {
+                                "_id": "61689237068cae000f12ef90",
+                                "id": "AboutUs",
+                                "params": {
+                                  "desktopHeroImage": {
+                                    "url": "https://imgurl.com/path/myPhoto.jpg",
+                                    "altText": "Custom image"
+                                  },
+                                  "aboutUsContent": [
+                                    {
+                                      "text": "About us",
+                                      "firstText": "Our Company",
+                                      "secondText": "Our mission",
+                                      "thirdText": "Our values",
+                                      "paragraph": false,
+                                      "dialog": false,
+                                      "components": []
+                                    }
+                                  ],
+                                  "components": [],
+                                  "additionalProp1": {}
+                                },
+                                "order": 1,
+                                "additionalProp1": {}
+                              }
+                            ],
+                            "endDate": "2099-12-31T00:00:00.000Z",
+                            "pageId": "613a76a15363f9e9575dc953",
+                            "status": "SCHEDULED",
+                            "versionId": 2446,
+                            "page": {
+                              "_id": "613a76a15363f9e9575dc953",
+                              "name": "Components",
+                              "pageUrl": "/components",
+                              "__v": 0,
+                              "channels": [
+                                "00SZAU",
+                                "02SZCA"
+                              ],
+                              "createdAt": "2021-09-09T21:03:29.617Z",
+                              "isActive": true,
+                              "isArchived": false,
+                              "pageId": 1377,
+                              "seoFields": {
+                                "title": "SEO",
+                                "description": "SEO description",
+                                "_id": "612e4756c4b3c60010fff859",
+                                "metadata": [
+                                  {
+                                    "_id": "612e4756c4b3c60010fff85a",
+                                    "name": "summary",
+                                    "content": "Types of components",
+                                    "createdAt": "2021-08-31T15:14:30.973Z",
+                                    "updatedAt": "2021-08-31T15:14:30.973Z"
+                                  }
+                                ],
+                                "createdAt": "2021-08-31T15:14:30.973Z",
+                                "updatedAt": "2021-08-31T15:14:30.973Z"
+                              },
+                              "typeId": "61325fd059cbdbe62e888bc0",
+                              "updatedAt": "2021-10-14T20:31:46.794Z",
+                              "typeName": "Product category page",
+                              "typeUrl": "/category"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "NoLivePages": {
+                    "summary": "No Live Pages",
+                    "value": {
+                      "message": "No live pages found with queryParams {\"channels\":\"01SZUS\",\"offset\":0,\"limit\":20}",
+                      "query": {
+                        "limit": 20,
+                        "offset": 0,
+                        "count": 0,
+                        "channels": [
+                          "01SZUS"
+                        ]
+                      },
+                      "livePages": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The request was received but no data matches the request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "404 response object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Status description"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "String message to inform client of error"
+                    },
+                    "statusCode": {
+                      "type": "integer",
+                      "description": "Status code of response"
+                    }
+                  },
+                  "example": {
+                    "status": "PAGE_NOT_FOUND",
+                    "message": "No Page Entry Found.",
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request was received but an internal error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "INTERNAL_SERVER_ERROR",
+                  "message": "An internal error occurred. If the issue persists please contact support@fabric.inc."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/page/live": {
+      "get": {
+        "summary": "Retrieves Live Page For A Channel By URL",
+        "description": "Returns the live page for the specified page url and channel",
+        "operationId": "getLivePageV2",
+        "tags": [
+          "Pages"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "url",
+            "description": "The relative page url for which to retrieve the live page version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "channels",
+            "description": "A comma-separated list of channel ids",
+            "schema": {
+              "type": "string",
+              "default": "12"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/XSiteContext"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "200 response object",
+                  "properties": {
+                    "status_code": {
+                      "type": "integer",
+                      "description": "The response status code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Status message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "The data object holding the live page and version details",
+                      "properties": {
+                        "page": {
+                          "type": "object",
+                          "description": "The page details",
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/Page"
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "pageType": {
+                                  "type": "object",
+                                  "description": "The page type object",
+                                  "properties": {
+                                    "isDefault": {
+                                      "type": "boolean",
+                                      "description": "True if page type is marked is default; false otherwise"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description": "The page type Name"
+                                    },
+                                    "urlPrefix": {
+                                      "type": "string",
+                                      "description": "The URL prefix associated with the page type"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "version": {
+                          "type": "array",
+                          "description": "An array holding the live page version",
+                          "items": {
+                            "type": "object",
+                            "description": "The live page version details",
+                            "allOf": [
+                              {
+                                "$ref": "#/components/schemas/PageVersion"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "__v": {
+                                    "type": "integer",
+                                    "description": "The versionKey associated with the version"
+                                  },
+                                  "startDate": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "The date and time the version was published"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status_code": 200,
+                  "message": "Live version: 2446 for page: /components",
+                  "data": {
+                    "page": {
+                      "_id": "613a76a15363f9e9575dc953",
+                      "name": "Components",
+                      "pageUrl": "/components",
+                      "__v": 0,
+                      "channels": [
+                        "00SZAU",
+                        "02SZCA"
+                      ],
+                      "createdAt": "2021-09-09T21:03:29.617Z",
+                      "isActive": true,
+                      "isArchived": false,
+                      "pageId": 1377,
+                      "seoFields": {
+                        "title": "SEO",
+                        "description": "SEO description",
+                        "_id": "612e4756c4b3c60010fff859",
+                        "metadata": [
+                          {
+                            "_id": "612e4756c4b3c60010fff85a",
+                            "name": "summary",
+                            "content": "Types of components",
+                            "createdAt": "2021-08-31T15:14:30.973Z",
+                            "updatedAt": "2021-08-31T15:14:30.973Z"
+                          }
+                        ],
+                        "createdAt": "2021-08-31T15:14:30.973Z",
+                        "updatedAt": "2021-08-31T15:14:30.973Z"
+                      },
+                      "updatedAt": "2021-10-14T20:31:46.794Z",
+                      "pageType": {
+                        "isDefault": false,
+                        "name": "Product category page",
+                        "urlPrefix": "/category"
+                      }
+                    },
+                    "version": [
+                      {
+                        "_id": "613a76a1fa9449000f6c36c3",
+                        "isArchived": false,
+                        "name": "Default",
+                        "channel": [
+                          12
+                        ],
+                        "channels": [
+                          "00SZAU",
+                          "02SZCA"
+                        ],
+                        "createdAt": "2021-09-09T21:03:29.712Z",
+                        "updatedAt": "2021-10-14T20:31:47.369Z",
+                        "components": {
+                          "_id": "61689237068cae000f12ef90",
+                          "id": "AboutUs",
+                          "params": {
+                            "desktopHeroImage": {
+                              "url": "https://imgurl.com/path/myPhoto.jpg",
+                              "altText": "Custom image"
+                            },
+                            "aboutUsContent": [
+                              {
+                                "text": "About us",
+                                "firstText": "Our Company",
+                                "secondText": "Our mission",
+                                "thirdText": "Our values",
+                                "paragraph": false,
+                                "dialog": false,
+                                "components": []
+                              }
+                            ],
+                            "components": [],
+                            "additionalProp1": {}
+                          },
+                          "order": 1,
+                          "additionalProp1": {}
+                        },
+                        "endDate": "2099-12-31T00:00:00.000Z",
+                        "pageId": "613a76a15363f9e9575dc953",
+                        "status": "SCHEDULED",
+                        "versionId": 2446,
+                        "__v": 0,
+                        "startDate": "2021-10-14T20:31:44.052Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Page is not live or is inactive",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "204 response object",
+                  "properties": {
+                    "status_code": {
+                      "type": "integer",
+                      "description": "The response status code"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Message describing the request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message describing the result of the response"
+                    }
+                  }
+                },
+                "examples": {
+                  "NoLiveVersion": {
+                    "summary": "No Live Versions",
+                    "value": {
+                      "status_code": 204,
+                      "status": "Live Page: /someUrl",
+                      "message": "No live version available for page: /someUrl, status: SCHEDULED, Date: Tue Oct 19 2021 16:18:21 GMT-0400 (Eastern Daylight Time), Channel: 02SZCA."
+                    }
+                  },
+                  "InactivePage": {
+                    "summary": "Inactive Page",
+                    "value": {
+                      "status_code": 204,
+                      "status": "Live Page: /someUrl",
+                      "message": "page: /someUrl is inactive or archived, so there will be no live versions of page."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Page url not specified",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "REQUEST_VALIDATION",
+                  "message": "Invalid data in query: must have required property 'url'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Page not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "PAGE_NOT_FOUND",
+                  "message": "No page entry found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request was received but an internal error occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "INTERNAL_SERVER_ERROR",
+                  "message": "An internal error occurred. If the issue persists please contact support@fabric.inc."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/global-component/live": {
+      "get": {
+        "summary": "Retrieves Live Global Components For A Channel",
+        "description": "Returns a list of all the live global component data for a specified channel",
+        "operationId": "getLiveGlobalComponentsV2",
+        "tags": [
+          "Global Components"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "channels",
+            "description": "A comma-separated list of channel ids",
+            "schema": {
+              "type": "string",
+              "default": "12"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/XSiteContext"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Components"
+                },
+                "examples": {
+                  "LiveComponents": {
+                    "$ref": "#/components/examples/globalComponentsExample"
+                  },
+                  "NoLiveComponents": {
+                    "summary": "No Live Components",
+                    "value": []
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request was received but an internal error occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "INTERNAL_SERVER_ERROR",
+                  "message": "An internal error occurred. If the issue persists please contact support@fabric.inc."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/menu/live": {
+      "get": {
+        "summary": "Retrieves Live Menu For A Channel",
+        "description": "Returns the live menu of the specified channel along with all its menu items",
+        "operationId": "getLiveMenuV2",
+        "tags": [
+          "Menu"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nodeId",
+            "description": "The id for a specific menu item, associated with a live menu, to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "parentId",
+            "description": "The id for a parent menu item, associated with a live menu, for which to retrieve the sub-menu items for",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "depth",
+            "description": "The depth to traverse when returning menu items",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "channels",
+            "description": "A comma-separated list of channel ids",
+            "schema": {
+              "type": "string",
+              "default": "12"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/XSiteContext"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "200 response object",
+                  "properties": {
+                    "query": {
+                      "type": "object",
+                      "description": "An object describing the request query",
+                      "properties": {
+                        "channelId": {
+                          "type": "string",
+                          "description": "The channel id specified in the request"
+                        },
+                        "nodeId": {
+                          "type": "string",
+                          "description": "The node id specified in the request"
+                        },
+                        "parentId": {
+                          "type": "string",
+                          "description": "The menu parent id specified in the request"
+                        },
+                        "depth": {
+                          "type": "integer",
+                          "description": "The search depth specified in the request"
+                        }
+                      }
+                    },
+                    "menu": {
+                      "type": "array",
+                      "description": "The menu details or a list of its menu item details",
+                      "items": {
+                        "type": "object",
+                        "description": "The menu and/or its menu item details",
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "description": "The menu and its menu item details",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "The menu name"
+                              },
+                              "channels": {
+                                "type": "array",
+                                "description": "The channel ids associated with the menu",
+                                "items": {
+                                  "type": "string",
+                                  "description": "The channel id associated with the menu"
+                                }
+                              },
+                              "children": {
+                                "$ref": "#/components/schemas/BrowseMenuItem"
+                              },
+                              "menuId": {
+                                "type": "string",
+                                "description": "The database id for menu"
+                              }
+                            }
+                          },
+                          {
+                            "$ref": "#/components/schemas/BrowseMenuItem"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "queryByChannelId": {
+                    "summary": "Query By Channel Id",
+                    "value": {
+                      "query": {
+                        "channelId": "02SZCA"
+                      },
+                      "menu": {
+                        "name": "Default",
+                        "channels": [
+                          "02SZCA"
+                        ],
+                        "children": [
+                          {
+                            "url": "/books",
+                            "name": "Books",
+                            "order": 0,
+                            "images": [],
+                            "nodeId": "6171d995bfdcf11c02a6177f",
+                            "parentId": "6171d977bfdcf11c02a61771",
+                            "children": [
+                              {
+                                "url": "/books/mystery",
+                                "name": "Mystery",
+                                "order": 0,
+                                "nodeId": "6171d9ecbfdcf11c02a617a7",
+                                "parentId": "6171d995bfdcf11c02a6177f"
+                              },
+                              {
+                                "url": "/books/sci-fi",
+                                "name": "Sci-fi",
+                                "order": 1,
+                                "nodeId": "6171d9f2bfdcf11c02a617ac",
+                                "parentId": "6171d995bfdcf11c02a6177f"
+                              },
+                              {
+                                "url": "/books/education",
+                                "name": "Education",
+                                "order": 2,
+                                "nodeId": "6171da2fbfdcf11c02a617ba",
+                                "parentId": "6171d995bfdcf11c02a6177f"
+                              }
+                            ]
+                          },
+                          {
+                            "url": "/health-household",
+                            "name": "Health & Household",
+                            "order": 1,
+                            "images": [
+                              {
+                                "_id": "6171db97bfdcf11c02a6181c",
+                                "order": 1,
+                                "url": "https://imageUrl.com/myImage.jpg",
+                                "meta": "Custom image"
+                              }
+                            ],
+                            "params": [
+                              {
+                                "_id": "6171db97bfdcf11c02a6181d",
+                                "kind": "Category",
+                                "value": "Health & Household"
+                              }
+                            ],
+                            "nodeId": "6171d9b9bfdcf11c02a61791",
+                            "parentId": "6171d977bfdcf11c02a61771",
+                            "children": [
+                              {
+                                "url": "/health-household/household-supplies",
+                                "name": "Household Supplies",
+                                "order": 0,
+                                "nodeId": "6171da4fbfdcf11c02a617ca",
+                                "parentId": "6171d9b9bfdcf11c02a61791"
+                              },
+                              {
+                                "url": "/health-household/vision-care",
+                                "name": "Vision Care",
+                                "order": 1,
+                                "nodeId": "6171da5bbfdcf11c02a617cf",
+                                "parentId": "6171d9b9bfdcf11c02a61791",
+                                "children": [
+                                  {
+                                    "url": "/health-household/vision-care/glasses",
+                                    "name": "Reading Glasses",
+                                    "order": 0,
+                                    "nodeId": "6171da7ebfdcf11c02a617e0",
+                                    "parentId": "6171da5bbfdcf11c02a617cf"
+                                  },
+                                  {
+                                    "url": "/health-household/vision-care/contacts",
+                                    "name": "Contact Lenses",
+                                    "order": 1,
+                                    "nodeId": "6171da8abfdcf11c02a617e5",
+                                    "parentId": "6171da5bbfdcf11c02a617cf"
+                                  },
+                                  {
+                                    "url": "/health-household/vision-care/contacts-care",
+                                    "name": "Contact Lens Care",
+                                    "order": 2,
+                                    "nodeId": "6171da90bfdcf11c02a617ea",
+                                    "parentId": "6171da5bbfdcf11c02a617cf"
+                                  }
+                                ]
+                              },
+                              {
+                                "url": "/health-household/medical",
+                                "name": "Medical Supplies & Equipment",
+                                "order": 2,
+                                "nodeId": "6171da67bfdcf11c02a617d4",
+                                "parentId": "6171d9b9bfdcf11c02a61791"
+                              }
+                            ]
+                          }
+                        ],
+                        "menuId": "6171d977bfdcf11c02a61771"
+                      }
+                    }
+                  },
+                  "queryByNodeId": {
+                    "summary": "Query by NodeId",
+                    "value": {
+                      "query": {
+                        "channelId": "02SZCA",
+                        "nodeId": "6171da5bbfdcf11c02a617cf"
+                      },
+                      "menu": [
+                        {
+                          "url": "/health-household/vision-care",
+                          "name": "Vision Care",
+                          "order": 1,
+                          "nodeId": "6171da5bbfdcf11c02a617cf",
+                          "parentId": "6171d9b9bfdcf11c02a61791",
+                          "children": [
+                            {
+                              "url": "/health-household/vision-care/glasses",
+                              "name": "Reading Glasses",
+                              "order": 0,
+                              "nodeId": "6171da7ebfdcf11c02a617e0",
+                              "parentId": "6171da5bbfdcf11c02a617cf"
+                            },
+                            {
+                              "url": "/health-household/vision-care/contacts",
+                              "name": "Contact Lenses",
+                              "order": 1,
+                              "nodeId": "6171da8abfdcf11c02a617e5",
+                              "parentId": "6171da5bbfdcf11c02a617cf"
+                            },
+                            {
+                              "url": "/health-household/vision-care/contacts-care",
+                              "name": "Contact Lens Care",
+                              "order": 2,
+                              "nodeId": "6171da90bfdcf11c02a617ea",
+                              "parentId": "6171da5bbfdcf11c02a617cf"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "queryByNodeIdAndDepth": {
+                    "summary": "Query by NodeId and Depth",
+                    "value": {
+                      "query": {
+                        "channelId": "02SZCA",
+                        "nodeId": "6171da5bbfdcf11c02a617cf",
+                        "depth": 1
+                      },
+                      "menu": [
+                        {
+                          "url": "/health-household/vision-care",
+                          "name": "Vision Care",
+                          "order": 1,
+                          "nodeId": "6171da5bbfdcf11c02a617cf",
+                          "parentId": "6171d9b9bfdcf11c02a61791"
+                        }
+                      ]
+                    }
+                  },
+                  "queryByParentId": {
+                    "summary": "Query by Parent Id",
+                    "value": {
+                      "query": {
+                        "channelId": "02SZCA",
+                        "parentId": "6171da5bbfdcf11c02a617cf"
+                      },
+                      "menu": [
+                        {
+                          "url": "/health-household/vision-care/glasses",
+                          "name": "Reading Glasses",
+                          "order": 0,
+                          "nodeId": "6171da7ebfdcf11c02a617e0",
+                          "parentId": "6171da5bbfdcf11c02a617cf"
+                        },
+                        {
+                          "url": "/health-household/vision-care/contacts",
+                          "name": "Contact Lenses",
+                          "order": 1,
+                          "nodeId": "6171da8abfdcf11c02a617e5",
+                          "parentId": "6171da5bbfdcf11c02a617cf"
+                        },
+                        {
+                          "url": "/health-household/vision-care/contacts-care",
+                          "name": "Contact Lens Care",
+                          "order": 2,
+                          "nodeId": "6171da90bfdcf11c02a617ea",
+                          "parentId": "6171da5bbfdcf11c02a617cf"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Menu not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "NOT_FOUND",
+                  "message": "The menu specified is not a live menu."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request was received but an internal error occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "INTERNAL_SERVER_ERROR",
+                  "message": "An internal error occurred. If the issue persists please contact support@fabric.inc."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "examples": {
+      "globalComponentsExample": {
+        "summary": "Live Components Exist",
+        "value": [
+          {
+            "_id": "60896f629aa7f1000744030b",
+            "id": "RailNavigation",
+            "params": {
+              "homeLinkText": "Home",
+              "sections": [
+                {
+                  "sectionTitle": "Get Started",
+                  "sectionLink": "/start",
+                  "subsections": [
+                    {
+                      "subSectionTitle": "What is fabric?",
+                      "subSectionLink": "/what-is-fabric",
+                      "components": []
+                    }
+                  ],
+                  "components": []
+                }
+              ],
+              "title": "Title"
+            },
+            "order": 1
+          },
+          {
+            "_id": "608ad8760536ac00074bec45",
+            "id": "CustomHeader",
+            "params": {
+              "developerSectionText": "developerSectionText",
+              "developerSectionLinks": [
+                {
+                  "title": "Knowledge Base",
+                  "description": "Get started",
+                  "link": "https://fabric.inc/knowledgebase",
+                  "components": []
+                },
+                {
+                  "title": "API documentation",
+                  "description": "Customize without limits",
+                  "link": "https://api.fabric.inc/",
+                  "components": []
+                }
+              ]
+            },
+            "order": 1
+          }
+        ]
+      }
+    },
+    "parameters": {
+      "XSiteContext": {
+        "name": "x-site-context",
+        "in": "header",
+        "description": "The `x-site-context` header is a JSON object that must contain your account ID. This header can also be called `X-Site-Context` based on your stylistic preferences.",
+        "schema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "account",
+            "stage"
+          ],
+          "properties": {
+            "account": {
+              "description": "The 24 character client's co-pilot account identifier",
+              "type": "string",
+              "example": "1234abcd5678efgh9ijklmno"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Page": {
+        "type": "object",
+        "description": "The page object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The page name"
+          },
+          "pageUrl": {
+            "type": "string",
+            "description": "The relative page url"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the page was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the page was updated"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "True if the page is active; false otherwise"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "True if the page is archived; false otherwise"
+          },
+          "pageId": {
+            "type": "integer",
+            "description": "An identifier used for the page"
+          },
+          "channels": {
+            "type": "array",
+            "description": "The channel ids associated with the page",
+            "items": {
+              "type": "string",
+              "description": "The channel id associated with the page"
+            }
+          },
+          "seoFields": {
+            "type": "object",
+            "description": "The SEO fields",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "SEO field title"
+              },
+              "description": {
+                "type": "string",
+                "description": "SEO field description"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date and time the SEO field was created"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date and time the SEO field was last updated"
+              },
+              "metadata": {
+                "type": "array",
+                "description": "The list of metadata associated with the SEO field",
+                "items": {
+                  "type": "object",
+                  "description": "The metadata associated with the SEO field",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Metadata name"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "Metadata content"
+                    },
+                    "_id": {
+                      "type": "string",
+                      "description": "The virutal id associated with the SEO field metadata"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The date and time the metadata was created"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The date and time the metadata was last updated"
+                    }
+                  }
+                }
+              },
+              "_id": {
+                "type": "string",
+                "description": "The virtual id associated with the SEO field"
+              }
+            }
+          },
+          "typeName": {
+            "type": "string",
+            "description": "Name of the page type of page (optional)"
+          },
+          "typeUrl": {
+            "type": "string",
+            "description": "URL of the page type of page (optional)"
+          },
+          "_id": {
+            "type": "string",
+            "description": "The database id associated with the page"
+          },
+          "__v": {
+            "type": "integer",
+            "description": "The versionKey associated with the page"
+          },
+          "channel": {
+            "type": "array",
+            "description": "A deprecated field holding channel information",
+            "items": {
+              "type": "integer",
+              "description": "The channel identifier"
+            }
+          }
+        }
+      },
+      "PageVersion": {
+        "type": "object",
+        "description": "The version object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The database id associated with the version"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "True if the version is archived; false otherwise"
+          },
+          "channel": {
+            "type": "array",
+            "description": "A deprecated field holding channel information",
+            "items": {
+              "type": "integer",
+              "description": "The channel identifier"
+            }
+          },
+          "channels": {
+            "type": "array",
+            "description": "The channel ids associated with the version",
+            "items": {
+              "type": "string",
+              "description": "The channel id associated with the version"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status of the version"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "The date when the version will no longer be live",
+            "format": "date-time"
+          },
+          "pageId": {
+            "type": "string",
+            "description": "The database id of the page associated with the version"
+          },
+          "name": {
+            "type": "string",
+            "description": "The version name"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description associated with the version"
+          },
+          "components": {
+            "$ref": "#/components/schemas/Components"
+          },
+          "versionId": {
+            "type": "integer",
+            "description": "An identifier used for the version"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the version was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the version was last updated"
+          }
+        }
+      },
+      "Components": {
+        "type": "array",
+        "description": "The list of components",
+        "items": {
+          "type": "object",
+          "description": "The component data",
+          "properties": {
+            "v_id": {
+              "type": "string",
+              "description": "The virtual id associated with the component"
+            },
+            "id": {
+              "type": "string",
+              "description": "The identifier used in the UI by the component"
+            },
+            "params": {
+              "type": "object",
+              "description": "The attached fields and values of the component",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "MenuItem": {
+        "type": "object",
+        "description": "The menu item object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The database id associated with the menu item"
+          },
+          "label": {
+            "type": "string",
+            "description": "The menu item label"
+          },
+          "order": {
+            "type": "integer",
+            "description": "The position the menu item appears in the UI"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "True if the menu item is active; false otherwise"
+          },
+          "channel": {
+            "type": "array",
+            "description": "A deprecated field holding channel information",
+            "items": {
+              "type": "integer",
+              "description": "The channel identifier"
+            }
+          },
+          "path": {
+            "type": "string",
+            "description": "The relative menu item url path"
+          },
+          "params": {
+            "type": "array",
+            "description": "List of additional data associated with the menu item",
+            "items": {
+              "type": "object",
+              "description": "Additional data associated with the menu item",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "A description for the parameter"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The value for the parameter"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "description": "The list of child menu items",
+            "items": {
+              "$ref": "#/components/schemas/MenuItem"
+            }
+          }
+        }
+      },
+      "BrowseMenuItem": {
+        "type": "object",
+        "description": "The browse menu item object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The relative menu item url path"
+          },
+          "name": {
+            "type": "string",
+            "description": "The menu item name"
+          },
+          "order": {
+            "type": "integer",
+            "description": "The position the menu item appears in the UI"
+          },
+          "images": {
+            "type": "array",
+            "description": "A list of image resources",
+            "items": {
+              "type": "object",
+              "description": "The image resource details",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "The virtual id for the image resource"
+                },
+                "order": {
+                  "type": "integer",
+                  "description": "The order in which the image was added/appears"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The url to the image resource"
+                },
+                "meta": {
+                  "type": "string",
+                  "description": "Information about the image"
+                }
+              }
+            }
+          },
+          "params": {
+            "type": "array",
+            "description": "List of additional data associated with the menu item",
+            "items": {
+              "type": "object",
+              "description": "Additional data associated with the menu item",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "The virtual id for the parameter"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "A description for the parameter"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The value for the parameter"
+                }
+              }
+            }
+          },
+          "nodeId": {
+            "type": "string",
+            "description": "The database id for the menu item"
+          },
+          "parentId": {
+            "type": "string",
+            "description": "The database id for the menu item parent"
+          },
+          "children": {
+            "$ref": "#/components/schemas/BrowseMenuItem"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "description": "The server error response object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The code associated with the type of server error"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message associated with the server error"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    }
+  }
+}
