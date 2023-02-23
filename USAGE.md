@@ -9,11 +9,11 @@ const sdk = new SDK();
     
 const req: GetLiveGlobalComponentsV2Request = {
   queryParams: {
-    channels: "sit",
+    channels: "unde",
   },
   headers: {
     xSiteContext: {
-      account: "voluptas",
+      account: "deserunt",
     },
   },
 };

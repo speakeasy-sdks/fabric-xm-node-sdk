@@ -1,6 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
-
 
 
 export class GetLiveGlobalComponentsV2QueryParams extends SpeakeasyBase {
@@ -8,12 +7,10 @@ export class GetLiveGlobalComponentsV2QueryParams extends SpeakeasyBase {
   channels?: string;
 }
 
-
 export class GetLiveGlobalComponentsV2Headers extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-site-context" })
   xSiteContext?: shared.XSiteContext;
 }
-
 
 export class GetLiveGlobalComponentsV2Request extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -22,7 +19,6 @@ export class GetLiveGlobalComponentsV2Request extends SpeakeasyBase {
   @SpeakeasyMetadata()
   headers: GetLiveGlobalComponentsV2Headers;
 }
-
 
 export class GetLiveGlobalComponentsV2Response extends SpeakeasyBase {
   @SpeakeasyMetadata()

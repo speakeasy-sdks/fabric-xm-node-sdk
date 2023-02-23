@@ -1,6 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
-
 
 
 export class GetLivePageV2QueryParams extends SpeakeasyBase {
@@ -11,18 +10,39 @@ export class GetLivePageV2QueryParams extends SpeakeasyBase {
   url: string;
 }
 
-
 export class GetLivePageV2Headers extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-site-context" })
   xSiteContext?: shared.XSiteContext;
 }
 
+export class GetLivePageV2Request extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  queryParams: GetLivePageV2QueryParams;
 
-// GetLivePageV2200ApplicationJsonDataPagePageType
+  @SpeakeasyMetadata()
+  headers: GetLivePageV2Headers;
+}
+
+// GetLivePageV2204ApplicationJSON
+/** 
+ * 204 response object
+**/
+export class GetLivePageV2204ApplicationJSON extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "json, name=message" })
+  message?: string;
+
+  @SpeakeasyMetadata({ data: "json, name=status" })
+  status?: string;
+
+  @SpeakeasyMetadata({ data: "json, name=status_code" })
+  statusCode?: number;
+}
+
+// GetLivePageV2200ApplicationJSONDataPagePageType
 /** 
  * The page type object
 **/
-export class GetLivePageV2200ApplicationJsonDataPagePageType extends SpeakeasyBase {
+export class GetLivePageV2200ApplicationJSONDataPagePageType extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=isDefault" })
   isDefault?: boolean;
 
@@ -33,12 +53,11 @@ export class GetLivePageV2200ApplicationJsonDataPagePageType extends SpeakeasyBa
   urlPrefix?: string;
 }
 
-
-// GetLivePageV2200ApplicationJsonDataPageSeoFieldsMetadata
+// GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata
 /** 
  * The metadata associated with the SEO field
 **/
-export class GetLivePageV2200ApplicationJsonDataPageSeoFieldsMetadata extends SpeakeasyBase {
+export class GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=_id" })
   id?: string;
 
@@ -55,12 +74,11 @@ export class GetLivePageV2200ApplicationJsonDataPageSeoFieldsMetadata extends Sp
   updatedAt?: Date;
 }
 
-
-// GetLivePageV2200ApplicationJsonDataPageSeoFields
+// GetLivePageV2200ApplicationJSONDataPageSeoFields
 /** 
  * The SEO fields
 **/
-export class GetLivePageV2200ApplicationJsonDataPageSeoFields extends SpeakeasyBase {
+export class GetLivePageV2200ApplicationJSONDataPageSeoFields extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=_id" })
   id?: string;
 
@@ -70,8 +88,8 @@ export class GetLivePageV2200ApplicationJsonDataPageSeoFields extends SpeakeasyB
   @SpeakeasyMetadata({ data: "json, name=description" })
   description?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=metadata", elemType: GetLivePageV2200ApplicationJsonDataPageSeoFieldsMetadata })
-  metadata?: GetLivePageV2200ApplicationJsonDataPageSeoFieldsMetadata[];
+  @SpeakeasyMetadata({ data: "json, name=metadata", elemType: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata })
+  metadata?: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata[];
 
   @SpeakeasyMetadata({ data: "json, name=title" })
   title?: string;
@@ -80,12 +98,11 @@ export class GetLivePageV2200ApplicationJsonDataPageSeoFields extends SpeakeasyB
   updatedAt?: Date;
 }
 
-
-// GetLivePageV2200ApplicationJsonDataPage
+// GetLivePageV2200ApplicationJSONDataPage
 /** 
  * The page object
 **/
-export class GetLivePageV2200ApplicationJsonDataPage extends SpeakeasyBase {
+export class GetLivePageV2200ApplicationJSONDataPage extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=__v" })
   v?: number;
 
@@ -114,13 +131,13 @@ export class GetLivePageV2200ApplicationJsonDataPage extends SpeakeasyBase {
   pageId?: number;
 
   @SpeakeasyMetadata({ data: "json, name=pageType" })
-  pageType?: GetLivePageV2200ApplicationJsonDataPagePageType;
+  pageType?: GetLivePageV2200ApplicationJSONDataPagePageType;
 
   @SpeakeasyMetadata({ data: "json, name=pageUrl" })
   pageUrl?: string;
 
   @SpeakeasyMetadata({ data: "json, name=seoFields" })
-  seoFields?: GetLivePageV2200ApplicationJsonDataPageSeoFields;
+  seoFields?: GetLivePageV2200ApplicationJSONDataPageSeoFields;
 
   @SpeakeasyMetadata({ data: "json, name=typeName" })
   typeName?: string;
@@ -132,12 +149,11 @@ export class GetLivePageV2200ApplicationJsonDataPage extends SpeakeasyBase {
   updatedAt?: Date;
 }
 
-
-// GetLivePageV2200ApplicationJsonDataVersion
+// GetLivePageV2200ApplicationJSONDataVersion
 /** 
  * The version object
 **/
-export class GetLivePageV2200ApplicationJsonDataVersion extends SpeakeasyBase {
+export class GetLivePageV2200ApplicationJSONDataVersion extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=__v" })
   v?: number;
 
@@ -184,27 +200,25 @@ export class GetLivePageV2200ApplicationJsonDataVersion extends SpeakeasyBase {
   versionId?: number;
 }
 
-
-// GetLivePageV2200ApplicationJsonData
+// GetLivePageV2200ApplicationJSONData
 /** 
  * The data object holding the live page and version details
 **/
-export class GetLivePageV2200ApplicationJsonData extends SpeakeasyBase {
+export class GetLivePageV2200ApplicationJSONData extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=page" })
-  page?: GetLivePageV2200ApplicationJsonDataPage;
+  page?: GetLivePageV2200ApplicationJSONDataPage;
 
-  @SpeakeasyMetadata({ data: "json, name=version", elemType: GetLivePageV2200ApplicationJsonDataVersion })
-  version?: GetLivePageV2200ApplicationJsonDataVersion[];
+  @SpeakeasyMetadata({ data: "json, name=version", elemType: GetLivePageV2200ApplicationJSONDataVersion })
+  version?: GetLivePageV2200ApplicationJSONDataVersion[];
 }
 
-
-// GetLivePageV2200ApplicationJson
+// GetLivePageV2200ApplicationJSON
 /** 
  * 200 response object
 **/
-export class GetLivePageV2200ApplicationJson extends SpeakeasyBase {
+export class GetLivePageV2200ApplicationJSON extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=data" })
-  data?: GetLivePageV2200ApplicationJsonData;
+  data?: GetLivePageV2200ApplicationJSONData;
 
   @SpeakeasyMetadata({ data: "json, name=message" })
   message?: string;
@@ -212,32 +226,6 @@ export class GetLivePageV2200ApplicationJson extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=status_code" })
   statusCode?: number;
 }
-
-
-// GetLivePageV2204ApplicationJson
-/** 
- * 204 response object
-**/
-export class GetLivePageV2204ApplicationJson extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=message" })
-  message?: string;
-
-  @SpeakeasyMetadata({ data: "json, name=status" })
-  status?: string;
-
-  @SpeakeasyMetadata({ data: "json, name=status_code" })
-  statusCode?: number;
-}
-
-
-export class GetLivePageV2Request extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: GetLivePageV2QueryParams;
-
-  @SpeakeasyMetadata()
-  headers: GetLivePageV2Headers;
-}
-
 
 export class GetLivePageV2Response extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -250,8 +238,8 @@ export class GetLivePageV2Response extends SpeakeasyBase {
   statusCode: number;
 
   @SpeakeasyMetadata()
-  getLivePageV2200ApplicationJSONObject?: GetLivePageV2200ApplicationJson;
+  getLivePageV2200ApplicationJSONObject?: GetLivePageV2200ApplicationJSON;
 
   @SpeakeasyMetadata()
-  getLivePageV2204ApplicationJSONObject?: GetLivePageV2204ApplicationJson;
+  getLivePageV2204ApplicationJSONObject?: GetLivePageV2204ApplicationJSON;
 }
