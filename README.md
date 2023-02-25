@@ -27,9 +27,13 @@ For more details on getting access to the Fabric API please see [here](https://k
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```typescript
-import { SDK, withSecurity} from "@fabric/xm-sdk";
-import { GetLiveGlobalComponentsV2Request, GetLiveGlobalComponentsV2Response } from "@fabric/xm-sdk/src/sdk/models/operations";
+import {
+  GetLiveGlobalComponentsV2Request,
+  GetLiveGlobalComponentsV2Response 
+} from "@fabric/xm-sdk/dist/sdk/models/operations";
+
 import { AxiosError } from "axios";
+import { SDK } from "@fabric/xm-sdk";
 
 
 const sdk = new SDK();
