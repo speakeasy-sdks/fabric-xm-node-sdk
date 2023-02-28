@@ -1,5 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 export class GetLivePageV2QueryParams extends SpeakeasyBase {
@@ -28,13 +29,16 @@ export class GetLivePageV2Request extends SpeakeasyBase {
  * 204 response object
 **/
 export class GetLivePageV2204ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=message" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "message" })
   message?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=status" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "status" })
   status?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=status_code" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "status_code" })
   statusCode?: number;
 }
 
@@ -43,13 +47,16 @@ export class GetLivePageV2204ApplicationJSON extends SpeakeasyBase {
  * The page type object
 **/
 export class GetLivePageV2200ApplicationJSONDataPagePageType extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=isDefault" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "isDefault" })
   isDefault?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=urlPrefix" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "urlPrefix" })
   urlPrefix?: string;
 }
 
@@ -58,19 +65,26 @@ export class GetLivePageV2200ApplicationJSONDataPagePageType extends SpeakeasyBa
  * The metadata associated with the SEO field
 **/
 export class GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "_id" })
   id?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=content" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "content" })
   content?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=createdAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "createdAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updatedAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updatedAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt?: Date;
 }
 
@@ -79,22 +93,31 @@ export class GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata extends Sp
  * The SEO fields
 **/
 export class GetLivePageV2200ApplicationJSONDataPageSeoFields extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "_id" })
   id?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=createdAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "createdAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=description" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "description" })
   description?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=metadata", elemType: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata })
+  @SpeakeasyMetadata({ elemType: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata })
+  @Expose({ name: "metadata" })
+  @Type(() => GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata)
   metadata?: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata[];
 
-  @SpeakeasyMetadata({ data: "json, name=title" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "title" })
   title?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updatedAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updatedAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt?: Date;
 }
 
@@ -103,49 +126,68 @@ export class GetLivePageV2200ApplicationJSONDataPageSeoFields extends SpeakeasyB
  * The page object
 **/
 export class GetLivePageV2200ApplicationJSONDataPage extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=__v" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "__v" })
   v?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "_id" })
   id?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=channel" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "channel" })
   channel?: number[];
 
-  @SpeakeasyMetadata({ data: "json, name=channels" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "channels" })
   channels?: string[];
 
-  @SpeakeasyMetadata({ data: "json, name=createdAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "createdAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=isActive" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "isActive" })
   isActive?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=isArchived" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "isArchived" })
   isArchived?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=pageId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "pageId" })
   pageId?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=pageType" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "pageType" })
+  @Type(() => GetLivePageV2200ApplicationJSONDataPagePageType)
   pageType?: GetLivePageV2200ApplicationJSONDataPagePageType;
 
-  @SpeakeasyMetadata({ data: "json, name=pageUrl" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "pageUrl" })
   pageUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=seoFields" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "seoFields" })
+  @Type(() => GetLivePageV2200ApplicationJSONDataPageSeoFields)
   seoFields?: GetLivePageV2200ApplicationJSONDataPageSeoFields;
 
-  @SpeakeasyMetadata({ data: "json, name=typeName" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "typeName" })
   typeName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=typeUrl" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "typeUrl" })
   typeUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updatedAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updatedAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt?: Date;
 }
 
@@ -154,49 +196,68 @@ export class GetLivePageV2200ApplicationJSONDataPage extends SpeakeasyBase {
  * The version object
 **/
 export class GetLivePageV2200ApplicationJSONDataVersion extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=__v" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "__v" })
   v?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "_id" })
   id?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=channel" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "channel" })
   channel?: number[];
 
-  @SpeakeasyMetadata({ data: "json, name=channels" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "channels" })
   channels?: string[];
 
-  @SpeakeasyMetadata({ data: "json, name=components" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "components" })
   components?: Record<string, any>[];
 
-  @SpeakeasyMetadata({ data: "json, name=createdAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "createdAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=description" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "description" })
   description?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=endDate" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "endDate" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   endDate?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=isArchived" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "isArchived" })
   isArchived?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=pageId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "pageId" })
   pageId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=startDate" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "startDate" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   startDate?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=status" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "status" })
   status?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updatedAt" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updatedAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=versionId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "versionId" })
   versionId?: number;
 }
 
@@ -205,10 +266,14 @@ export class GetLivePageV2200ApplicationJSONDataVersion extends SpeakeasyBase {
  * The data object holding the live page and version details
 **/
 export class GetLivePageV2200ApplicationJSONData extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=page" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "page" })
+  @Type(() => GetLivePageV2200ApplicationJSONDataPage)
   page?: GetLivePageV2200ApplicationJSONDataPage;
 
-  @SpeakeasyMetadata({ data: "json, name=version", elemType: GetLivePageV2200ApplicationJSONDataVersion })
+  @SpeakeasyMetadata({ elemType: GetLivePageV2200ApplicationJSONDataVersion })
+  @Expose({ name: "version" })
+  @Type(() => GetLivePageV2200ApplicationJSONDataVersion)
   version?: GetLivePageV2200ApplicationJSONDataVersion[];
 }
 
@@ -217,13 +282,17 @@ export class GetLivePageV2200ApplicationJSONData extends SpeakeasyBase {
  * 200 response object
 **/
 export class GetLivePageV2200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=data" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "data" })
+  @Type(() => GetLivePageV2200ApplicationJSONData)
   data?: GetLivePageV2200ApplicationJSONData;
 
-  @SpeakeasyMetadata({ data: "json, name=message" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "message" })
   message?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=status_code" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "status_code" })
   statusCode?: number;
 }
 

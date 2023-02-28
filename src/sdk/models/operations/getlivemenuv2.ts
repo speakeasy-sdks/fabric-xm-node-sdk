@@ -1,5 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetLiveMenuV2QueryParams extends SpeakeasyBase {
@@ -34,16 +35,20 @@ export class GetLiveMenuV2Request extends SpeakeasyBase {
  * An object describing the request query
 **/
 export class GetLiveMenuV2200ApplicationJSONQuery extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=channelId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "channelId" })
   channelId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=depth" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "depth" })
   depth?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=nodeId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "nodeId" })
   nodeId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=parentId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "parentId" })
   parentId?: string;
 }
 
@@ -52,10 +57,13 @@ export class GetLiveMenuV2200ApplicationJSONQuery extends SpeakeasyBase {
  * 200 response object
 **/
 export class GetLiveMenuV2200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=menu" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "menu" })
   menu?: Record<string, any>[];
 
-  @SpeakeasyMetadata({ data: "json, name=query" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "query" })
+  @Type(() => GetLiveMenuV2200ApplicationJSONQuery)
   query?: GetLiveMenuV2200ApplicationJSONQuery;
 }
 
