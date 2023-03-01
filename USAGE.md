@@ -3,10 +3,10 @@
 import {
   GetLiveGlobalComponentsV2Request,
   GetLiveGlobalComponentsV2Response 
-} from "@fabric/xm-sdk/dist/sdk/models/operations";
+} from "<no value>/dist/sdk/models/operations";
 
 import { AxiosError } from "axios";
-import { SDK } from "@fabric/xm-sdk";
+import { SDK } from "<no value>";
 
 
 const sdk = new SDK();

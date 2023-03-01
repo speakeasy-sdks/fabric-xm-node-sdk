@@ -10,13 +10,13 @@ API docs can be found [here](https://knowledgebase.fabric.inc/docs/openapi/xm/v2
 ### NPM
 
 ```bash
-npm add @fabric/xm-sdk
+npm add <no value>
 ```
 
 ### Yarn
 
 ```bash
-yarn add @fabric/xm-sdk
+yarn add <no value>
 ```
 <!-- End SDK Installation -->
 
@@ -30,10 +30,10 @@ For more details on getting access to the Fabric API please see [here](https://k
 import {
   GetLiveGlobalComponentsV2Request,
   GetLiveGlobalComponentsV2Response 
-} from "@fabric/xm-sdk/dist/sdk/models/operations";
+} from "<no value>/dist/sdk/models/operations";
 
 import { AxiosError } from "axios";
-import { SDK } from "@fabric/xm-sdk";
+import { SDK } from "<no value>";
 
 
 const sdk = new SDK();
