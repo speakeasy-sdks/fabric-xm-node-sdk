@@ -57,11 +57,7 @@ export class GlobalComponents {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.components = plainToInstance(
-                ,
-                httpRes?.data as ,
-                { excludeExtraneousValues: true }
-              );
+              res.components = httpRes?.data;
             }
             break;
           case httpRes?.status == 500:
