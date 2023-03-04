@@ -15,7 +15,7 @@ export type SDKProps = {
   serverUrl?: string;
 }
 
-
+/* SDK Documentation: fabric's Experience Manager (XM) enables you to design, implement, and optimize omnichannel e-commerce experiences, without having to code. With XM, you can easily add parent and child categories through our intuitive UI to create your website navigation, and seamlessly integrate with our APIs for dynamic navigation rendering on your store front. In addition, developers can implement agile design by creating reusable design components and use one set of data and APIs for every channel.*/
 export class SDK {
   public globalComponents: GlobalComponents;
   public menu: Menu;
@@ -25,8 +25,8 @@ export class SDK {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "3.3.0";
-  private _genVersion = "1.7.1";
+  private _sdkVersion = "3.4.0";
+  private _genVersion = "1.8.2";
 
   constructor(props: SDKProps) {
     this._serverURL = props.serverUrl ?? ServerList[0];
