@@ -24,5 +24,6 @@ src/sdk/models/operations/getlivepagesv2.ts
 src/sdk/models/operations/index.ts
 src/sdk/models/shared/error.ts
 src/sdk/models/shared/xsitecontext.ts
+src/sdk/models/shared/browsemenuitem.ts
 src/sdk/models/shared/index.ts
 USAGE.md

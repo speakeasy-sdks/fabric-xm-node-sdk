@@ -31,6 +31,29 @@ export class GetLiveMenuV2Request extends SpeakeasyBase {
   headers: GetLiveMenuV2Headers;
 }
 
+// GetLiveMenuV2200ApplicationJSONMenu1
+/** 
+ * The menu and its menu item details
+**/
+export class GetLiveMenuV2200ApplicationJSONMenu1 extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "channels" })
+  channels?: string[];
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "children" })
+  @Type(() => shared.BrowseMenuItem)
+  children?: shared.BrowseMenuItem;
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "menuId" })
+  menuId?: string;
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
+  name?: string;
+}
+
 // GetLiveMenuV2200ApplicationJSONQuery
 /** 
  * An object describing the request query
@@ -60,7 +83,7 @@ export class GetLiveMenuV2200ApplicationJSONQuery extends SpeakeasyBase {
 export class GetLiveMenuV2200ApplicationJSON extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "menu" })
-  menu?: Record<string, any>[];
+  menu?: any[];
 
   @SpeakeasyMetadata()
   @Expose({ name: "query" })
