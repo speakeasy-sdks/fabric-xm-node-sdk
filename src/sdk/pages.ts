@@ -53,50 +53,50 @@ export class Pages {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetLivePageV2Response = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
+        const res: operations.GetLivePageV2Response =
+            new operations.GetLivePageV2Response({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes
+            });
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.getLivePageV2200ApplicationJSONObject = plainToInstance(
+              res.getLivePageV2200ApplicationJSONObject = utils.deserializeJSONResponse(
+                httpRes?.data,
                 operations.GetLivePageV2200ApplicationJSON,
-                httpRes?.data as operations.GetLivePageV2200ApplicationJSON,
-                { excludeExtraneousValues: true }
               );
             }
             break;
           case httpRes?.status == 204:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.getLivePageV2204ApplicationJSONObject = plainToInstance(
+              res.getLivePageV2204ApplicationJSONObject = utils.deserializeJSONResponse(
+                httpRes?.data,
                 operations.GetLivePageV2204ApplicationJSON,
-                httpRes?.data as operations.GetLivePageV2204ApplicationJSON,
-                { excludeExtraneousValues: true }
               );
             }
             break;
           case httpRes?.status == 400:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.error = plainToInstance(
+              res.error = utils.deserializeJSONResponse(
+                httpRes?.data,
                 shared.ErrorT,
-                httpRes?.data as shared.ErrorT,
-                { excludeExtraneousValues: true }
               );
             }
             break;
           case httpRes?.status == 404:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.error = plainToInstance(
+              res.error = utils.deserializeJSONResponse(
+                httpRes?.data,
                 shared.ErrorT,
-                httpRes?.data as shared.ErrorT,
-                { excludeExtraneousValues: true }
               );
             }
             break;
           case httpRes?.status == 500:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.error = plainToInstance(
+              res.error = utils.deserializeJSONResponse(
+                httpRes?.data,
                 shared.ErrorT,
-                httpRes?.data as shared.ErrorT,
-                { excludeExtraneousValues: true }
               );
             }
             break;
@@ -139,32 +139,34 @@ export class Pages {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetLivePagesV2Response = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
+        const res: operations.GetLivePagesV2Response =
+            new operations.GetLivePagesV2Response({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes
+            });
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.getLivePagesV2200ApplicationJSONObject = plainToInstance(
+              res.getLivePagesV2200ApplicationJSONObject = utils.deserializeJSONResponse(
+                httpRes?.data,
                 operations.GetLivePagesV2200ApplicationJSON,
-                httpRes?.data as operations.GetLivePagesV2200ApplicationJSON,
-                { excludeExtraneousValues: true }
               );
             }
             break;
           case httpRes?.status == 404:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.getLivePagesV2404ApplicationJSONObject = plainToInstance(
+              res.getLivePagesV2404ApplicationJSONObject = utils.deserializeJSONResponse(
+                httpRes?.data,
                 operations.GetLivePagesV2404ApplicationJSON,
-                httpRes?.data as operations.GetLivePagesV2404ApplicationJSON,
-                { excludeExtraneousValues: true }
               );
             }
             break;
           case httpRes?.status == 500:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.error = plainToInstance(
+              res.error = utils.deserializeJSONResponse(
+                httpRes?.data,
                 shared.ErrorT,
-                httpRes?.data as shared.ErrorT,
-                { excludeExtraneousValues: true }
               );
             }
             break;

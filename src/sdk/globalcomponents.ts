@@ -53,19 +53,23 @@ export class GlobalComponents {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetLiveGlobalComponentsV2Response = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
+        const res: operations.GetLiveGlobalComponentsV2Response =
+            new operations.GetLiveGlobalComponentsV2Response({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes
+            });
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.components = httpRes?.data;
+              res.components = utils.deserializeJSONResponse(httpRes?.data);
             }
             break;
           case httpRes?.status == 500:
             if (utils.matchContentType(contentType, `application/json`)) {
-              res.error = plainToInstance(
+              res.error = utils.deserializeJSONResponse(
+                httpRes?.data,
                 shared.ErrorT,
-                httpRes?.data as shared.ErrorT,
-                { excludeExtraneousValues: true }
               );
             }
             break;
