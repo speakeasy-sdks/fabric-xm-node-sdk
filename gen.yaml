@@ -1,8 +1,8 @@
 management:
     openapi-checksum: d5fd8ee0e6bbce6f625f0474bfa047bf
     openapi-version: 2.0.0
-    speakeasy-version: 1.8.7
+    speakeasy-version: 1.9.1
 typescript:
-    version: 3.4.4
+    version: 3.5.0
     packagename: '@fabric/xm-sdk'
     author: vesselapi
