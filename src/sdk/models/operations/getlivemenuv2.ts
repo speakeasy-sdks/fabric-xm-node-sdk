@@ -1,6 +1,7 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
-
+import { AxiosResponse } from "axios";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetLiveMenuV2QueryParams extends SpeakeasyBase {
@@ -17,44 +18,10 @@ export class GetLiveMenuV2QueryParams extends SpeakeasyBase {
   parentId?: string;
 }
 
-
 export class GetLiveMenuV2Headers extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-site-context" })
   xSiteContext?: shared.XSiteContext;
 }
-
-
-// GetLiveMenuV2200ApplicationJsonQuery
-/** 
- * An object describing the request query
-**/
-export class GetLiveMenuV2200ApplicationJsonQuery extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=channelId" })
-  channelId?: string;
-
-  @SpeakeasyMetadata({ data: "json, name=depth" })
-  depth?: number;
-
-  @SpeakeasyMetadata({ data: "json, name=nodeId" })
-  nodeId?: string;
-
-  @SpeakeasyMetadata({ data: "json, name=parentId" })
-  parentId?: string;
-}
-
-
-// GetLiveMenuV2200ApplicationJson
-/** 
- * 200 response object
-**/
-export class GetLiveMenuV2200ApplicationJson extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=menu" })
-  menu?: Record<string, any>[];
-
-  @SpeakeasyMetadata({ data: "json, name=query" })
-  query?: GetLiveMenuV2200ApplicationJsonQuery;
-}
-
 
 export class GetLiveMenuV2Request extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -64,6 +31,65 @@ export class GetLiveMenuV2Request extends SpeakeasyBase {
   headers: GetLiveMenuV2Headers;
 }
 
+// GetLiveMenuV2200ApplicationJSONMenu1
+/** 
+ * The menu and its menu item details
+**/
+export class GetLiveMenuV2200ApplicationJSONMenu1 extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "channels" })
+  channels?: string[];
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "children" })
+  @Type(() => shared.BrowseMenuItem)
+  children?: shared.BrowseMenuItem;
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "menuId" })
+  menuId?: string;
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
+  name?: string;
+}
+
+// GetLiveMenuV2200ApplicationJSONQuery
+/** 
+ * An object describing the request query
+**/
+export class GetLiveMenuV2200ApplicationJSONQuery extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "channelId" })
+  channelId?: string;
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "depth" })
+  depth?: number;
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "nodeId" })
+  nodeId?: string;
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "parentId" })
+  parentId?: string;
+}
+
+// GetLiveMenuV2200ApplicationJSON
+/** 
+ * 200 response object
+**/
+export class GetLiveMenuV2200ApplicationJSON extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "menu" })
+  menu?: any[];
+
+  @SpeakeasyMetadata()
+  @Expose({ name: "query" })
+  @Type(() => GetLiveMenuV2200ApplicationJSONQuery)
+  query?: GetLiveMenuV2200ApplicationJSONQuery;
+}
 
 export class GetLiveMenuV2Response extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -76,5 +102,8 @@ export class GetLiveMenuV2Response extends SpeakeasyBase {
   statusCode: number;
 
   @SpeakeasyMetadata()
-  getLiveMenuV2200ApplicationJSONObject?: GetLiveMenuV2200ApplicationJson;
+  rawResponse?: AxiosResponse;
+
+  @SpeakeasyMetadata()
+  getLiveMenuV2200ApplicationJSONObject?: GetLiveMenuV2200ApplicationJSON;
 }

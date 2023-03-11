@@ -1,10 +1,7 @@
-import axios, { AxiosInstance } from "axios";
-import * as utils from "../internal/utils";
-
 import { GlobalComponents } from "./globalcomponents";
 import { Menu } from "./menu";
 import { Pages } from "./pages";
-
+import axios, { AxiosInstance } from "axios";
 
 export const ServerList = [
 	"https://cdn.xm.fabric.inc/api",
@@ -18,7 +15,7 @@ export type SDKProps = {
   serverUrl?: string;
 }
 
-
+/* SDK Documentation: fabric's Experience Manager (XM) enables you to design, implement, and optimize omnichannel e-commerce experiences, without having to code. With XM, you can easily add parent and child categories through our intuitive UI to create your website navigation, and seamlessly integrate with our APIs for dynamic navigation rendering on your store front. In addition, developers can implement agile design by creating reusable design components and use one set of data and APIs for every channel.*/
 export class SDK {
   public globalComponents: GlobalComponents;
   public menu: Menu;
@@ -28,13 +25,13 @@ export class SDK {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "2.1.0";
-  private _genVersion = "0.21.3";
+  private _sdkVersion = "3.5.1";
+  private _genVersion = "1.9.2";
 
-  constructor(props: SDKProps) {
-    this._serverURL = props.serverUrl ?? ServerList[0];
+  constructor(props?: SDKProps) {
+    this._serverURL = props?.serverUrl ?? ServerList[0];
 
-    this._defaultClient = props.defaultClient ?? axios.create({ baseURL: this._serverURL });
+    this._defaultClient = props?.defaultClient ?? axios.create({ baseURL: this._serverURL });
     this._securityClient = this._defaultClient;
     
     this.globalComponents = new GlobalComponents(
@@ -64,4 +61,5 @@ export class SDK {
       this._genVersion
     );
   }
+  
 }

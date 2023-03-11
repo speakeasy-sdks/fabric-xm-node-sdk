@@ -1,6 +1,8 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
-import * as operations from "./models/operations";
 import * as utils from "../internal/utils";
+import * as operations from "./models/operations";
+import * as shared from "./models/shared";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Menu {
   _defaultClient: AxiosInstance;
@@ -36,42 +38,50 @@ export class Menu {
     const url: string = baseURL.replace(/\/$/, "") + "/v2/menu/live";
     
     const client: AxiosInstance = this._defaultClient!;
-    const headers = {...utils.getHeadersFromRequest(req.headers), ...config?.headers};
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const headers = {...utils.getHeadersFromRequest(req.headers), ...config?.headers};
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
       headers: headers,
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetLiveMenuV2Response = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.GetLiveMenuV2Response =
+            new operations.GetLiveMenuV2Response({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes
+            });
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getLiveMenuV2200ApplicationJSONObject = httpRes?.data;
+              res.getLiveMenuV2200ApplicationJSONObject = utils.deserializeJSONResponse(
+                httpRes?.data,
+                operations.GetLiveMenuV2200ApplicationJSON,
+              );
             }
             break;
           case httpRes?.status == 404:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.error = httpRes?.data;
+              res.error = utils.deserializeJSONResponse(
+                httpRes?.data,
+                shared.ErrorT,
+              );
             }
             break;
           case httpRes?.status == 500:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.error = httpRes?.data;
+              res.error = utils.deserializeJSONResponse(
+                httpRes?.data,
+                shared.ErrorT,
+              );
             }
             break;
         }
