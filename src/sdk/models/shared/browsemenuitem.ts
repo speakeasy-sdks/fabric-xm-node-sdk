@@ -1,11 +1,10 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Type } from "class-transformer";
 
-
 // BrowseMenuItemImages
-/** 
+/**
  * The image resource details
-**/
+ **/
 export class BrowseMenuItemImages extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "_id" })
@@ -25,9 +24,9 @@ export class BrowseMenuItemImages extends SpeakeasyBase {
 }
 
 // BrowseMenuItemParams
-/** 
+/**
  * Additional data associated with the menu item
-**/
+ **/
 export class BrowseMenuItemParams extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "_id" })
@@ -43,9 +42,9 @@ export class BrowseMenuItemParams extends SpeakeasyBase {
 }
 
 // BrowseMenuItem
-/** 
+/**
  * The browse menu item object
-**/
+ **/
 export class BrowseMenuItem extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "children" })

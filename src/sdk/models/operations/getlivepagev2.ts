@@ -3,9 +3,10 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Transform, Type } from "class-transformer";
 
-
 export class GetLivePageV2QueryParams extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=channels" })
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=channels",
+  })
   channels?: string;
 
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=url" })
@@ -13,7 +14,9 @@ export class GetLivePageV2QueryParams extends SpeakeasyBase {
 }
 
 export class GetLivePageV2Headers extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-site-context" })
+  @SpeakeasyMetadata({
+    data: "header, style=simple;explode=false;name=x-site-context",
+  })
   xSiteContext?: shared.XSiteContext;
 }
 
@@ -26,9 +29,9 @@ export class GetLivePageV2Request extends SpeakeasyBase {
 }
 
 // GetLivePageV2204ApplicationJSON
-/** 
+/**
  * 204 response object
-**/
+ **/
 export class GetLivePageV2204ApplicationJSON extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "message" })
@@ -44,9 +47,9 @@ export class GetLivePageV2204ApplicationJSON extends SpeakeasyBase {
 }
 
 // GetLivePageV2200ApplicationJSONDataPagePageType
-/** 
+/**
  * The page type object
-**/
+ **/
 export class GetLivePageV2200ApplicationJSONDataPagePageType extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "isDefault" })
@@ -62,9 +65,9 @@ export class GetLivePageV2200ApplicationJSONDataPagePageType extends SpeakeasyBa
 }
 
 // GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata
-/** 
+/**
  * The metadata associated with the SEO field
-**/
+ **/
 export class GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "_id" })
@@ -90,9 +93,9 @@ export class GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata extends Sp
 }
 
 // GetLivePageV2200ApplicationJSONDataPageSeoFields
-/** 
+/**
  * The SEO fields
-**/
+ **/
 export class GetLivePageV2200ApplicationJSONDataPageSeoFields extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "_id" })
@@ -107,7 +110,9 @@ export class GetLivePageV2200ApplicationJSONDataPageSeoFields extends SpeakeasyB
   @Expose({ name: "description" })
   description?: string;
 
-  @SpeakeasyMetadata({ elemType: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata })
+  @SpeakeasyMetadata({
+    elemType: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata,
+  })
   @Expose({ name: "metadata" })
   @Type(() => GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata)
   metadata?: GetLivePageV2200ApplicationJSONDataPageSeoFieldsMetadata[];
@@ -123,9 +128,9 @@ export class GetLivePageV2200ApplicationJSONDataPageSeoFields extends SpeakeasyB
 }
 
 // GetLivePageV2200ApplicationJSONDataPage
-/** 
+/**
  * The page object
-**/
+ **/
 export class GetLivePageV2200ApplicationJSONDataPage extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "__v" })
@@ -193,9 +198,9 @@ export class GetLivePageV2200ApplicationJSONDataPage extends SpeakeasyBase {
 }
 
 // GetLivePageV2200ApplicationJSONDataVersion
-/** 
+/**
  * The version object
-**/
+ **/
 export class GetLivePageV2200ApplicationJSONDataVersion extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "__v" })
@@ -263,9 +268,9 @@ export class GetLivePageV2200ApplicationJSONDataVersion extends SpeakeasyBase {
 }
 
 // GetLivePageV2200ApplicationJSONData
-/** 
+/**
  * The data object holding the live page and version details
-**/
+ **/
 export class GetLivePageV2200ApplicationJSONData extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "page" })
@@ -279,9 +284,9 @@ export class GetLivePageV2200ApplicationJSONData extends SpeakeasyBase {
 }
 
 // GetLivePageV2200ApplicationJSON
-/** 
+/**
  * 200 response object
-**/
+ **/
 export class GetLivePageV2200ApplicationJSON extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "data" })

@@ -3,14 +3,17 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Type } from "class-transformer";
 
-
 export class GetLiveGlobalComponentsV2QueryParams extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=channels" })
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=channels",
+  })
   channels?: string;
 }
 
 export class GetLiveGlobalComponentsV2Headers extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-site-context" })
+  @SpeakeasyMetadata({
+    data: "header, style=simple;explode=false;name=x-site-context",
+  })
   xSiteContext?: shared.XSiteContext;
 }
 
