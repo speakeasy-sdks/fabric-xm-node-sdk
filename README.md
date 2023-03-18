@@ -42,7 +42,7 @@ const req: GetLiveGlobalComponentsV2Request = {
   },
   headers: {
     xSiteContext: {
-      account: "deserunt",
+      account: "1234abcd5678efgh9ijklmno",
     },
   },
 };
