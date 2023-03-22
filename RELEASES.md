@@ -143,3 +143,11 @@ Based on:
 - Speakeasy CLI 1.12.4 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [NPM v3.7.3] https://www.npmjs.com/package/@fabric/xm-sdk/v/3.7.3 - .
+
+## Version 3.8.0
+### Changes
+Based on:
+- OpenAPI Doc 2.0.0 ./fabric.json
+- Speakeasy CLI 1.13.0 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [NPM v3.8.0] https://www.npmjs.com/package/@fabric/xm-sdk/v/3.8.0 - .
