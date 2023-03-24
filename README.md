@@ -10,13 +10,13 @@ API docs can be found [here](https://knowledgebase.fabric.inc/docs/openapi/xm/v2
 ### NPM
 
 ```bash
-npm add openapi
+npm add <UNSET>
 ```
 
 ### Yarn
 
 ```bash
-yarn add openapi
+yarn add <UNSET>
 ```
 <!-- End SDK Installation -->
 
