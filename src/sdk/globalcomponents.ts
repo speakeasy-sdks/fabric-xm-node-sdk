@@ -52,7 +52,7 @@ export class GlobalComponents {
     const url: string =
       baseURL.replace(/\/$/, "") + "/v2/global-component/live";
 
-    const client: AxiosInstance = this._defaultClient!;
+    const client: AxiosInstance = this._defaultClient;
 
     const headers = {
       ...utils.getHeadersFromRequest(req.headers),
