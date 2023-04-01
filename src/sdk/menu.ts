@@ -53,11 +53,8 @@ export class Menu {
 
     const client: AxiosInstance = this._defaultClient;
 
-    const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
-      ...config?.headers,
-    };
-    const queryParams: string = utils.serializeQueryParams(req.queryParams);
+    const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
 
     const r = client.request({
       url: url + queryParams,

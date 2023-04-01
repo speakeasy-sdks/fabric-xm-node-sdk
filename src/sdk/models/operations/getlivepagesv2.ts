@@ -7,7 +7,7 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Transform, Type } from "class-transformer";
 
-export class GetLivePagesV2QueryParams extends SpeakeasyBase {
+export class GetLivePagesV2Request extends SpeakeasyBase {
   /**
    * A comma-separated list of channel ids
    */
@@ -29,9 +29,7 @@ export class GetLivePagesV2QueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=offset",
   })
   offset?: number;
-}
 
-export class GetLivePagesV2Headers extends SpeakeasyBase {
   /**
    * The `x-site-context` header is a JSON object that must contain your account ID. This header can also be called `X-Site-Context` based on your stylistic preferences.
    */
@@ -39,14 +37,6 @@ export class GetLivePagesV2Headers extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-site-context",
   })
   xSiteContext?: shared.XSiteContext;
-}
-
-export class GetLivePagesV2Request extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: GetLivePagesV2QueryParams;
-
-  @SpeakeasyMetadata()
-  headers: GetLivePagesV2Headers;
 }
 
 /**

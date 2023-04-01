@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class GetLiveGlobalComponentsV2QueryParams extends SpeakeasyBase {
+export class GetLiveGlobalComponentsV2Request extends SpeakeasyBase {
   /**
    * A comma-separated list of channel ids
    */
@@ -14,9 +14,7 @@ export class GetLiveGlobalComponentsV2QueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=channels",
   })
   channels?: string;
-}
 
-export class GetLiveGlobalComponentsV2Headers extends SpeakeasyBase {
   /**
    * The `x-site-context` header is a JSON object that must contain your account ID. This header can also be called `X-Site-Context` based on your stylistic preferences.
    */
@@ -24,14 +22,6 @@ export class GetLiveGlobalComponentsV2Headers extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-site-context",
   })
   xSiteContext?: shared.XSiteContext;
-}
-
-export class GetLiveGlobalComponentsV2Request extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: GetLiveGlobalComponentsV2QueryParams;
-
-  @SpeakeasyMetadata()
-  headers: GetLiveGlobalComponentsV2Headers;
 }
 
 export class GetLiveGlobalComponentsV2Response extends SpeakeasyBase {

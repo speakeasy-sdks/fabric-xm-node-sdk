@@ -10,13 +10,9 @@ import { SDK } from "openapi";
 const sdk = new SDK();
 
 const req: GetLiveGlobalComponentsV2Request = {
-  queryParams: {
-    channels: "unde",
-  },
-  headers: {
-    xSiteContext: {
-      account: "1234abcd5678efgh9ijklmno",
-    },
+  channels: "corrupti",
+  xSiteContext: {
+    account: "1234abcd5678efgh9ijklmno",
   },
 };
 

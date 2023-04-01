@@ -7,7 +7,7 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class GetLiveMenuV2QueryParams extends SpeakeasyBase {
+export class GetLiveMenuV2Request extends SpeakeasyBase {
   /**
    * A comma-separated list of channel ids
    */
@@ -37,9 +37,7 @@ export class GetLiveMenuV2QueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=parentId",
   })
   parentId?: string;
-}
 
-export class GetLiveMenuV2Headers extends SpeakeasyBase {
   /**
    * The `x-site-context` header is a JSON object that must contain your account ID. This header can also be called `X-Site-Context` based on your stylistic preferences.
    */
@@ -47,14 +45,6 @@ export class GetLiveMenuV2Headers extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-site-context",
   })
   xSiteContext?: shared.XSiteContext;
-}
-
-export class GetLiveMenuV2Request extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: GetLiveMenuV2QueryParams;
-
-  @SpeakeasyMetadata()
-  headers: GetLiveMenuV2Headers;
 }
 
 /**
