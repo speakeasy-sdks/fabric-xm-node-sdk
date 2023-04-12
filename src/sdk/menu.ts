@@ -77,19 +77,15 @@ export class Menu {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLiveMenuV2200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetLiveMenuV2200ApplicationJSON
-              );
+            res.getLiveMenuV2200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetLiveMenuV2200ApplicationJSON
+            );
           }
           break;
         case [404, 500].includes(httpRes?.status):
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.error = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.ErrorT
-            );
+            res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
           }
           break;
       }

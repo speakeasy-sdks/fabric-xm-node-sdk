@@ -78,15 +78,12 @@ export class GlobalComponents {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.components = utils.deserializeJSONResponse(httpRes?.data);
+            res.components = utils.objectToClass(httpRes?.data);
           }
           break;
         case httpRes?.status == 500:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.error = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.ErrorT
-            );
+            res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
           }
           break;
       }

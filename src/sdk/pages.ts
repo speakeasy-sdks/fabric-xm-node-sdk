@@ -77,28 +77,23 @@ export class Pages {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePageV2200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetLivePageV2200ApplicationJSON
-              );
+            res.getLivePageV2200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetLivePageV2200ApplicationJSON
+            );
           }
           break;
         case httpRes?.status == 204:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePageV2204ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetLivePageV2204ApplicationJSON
-              );
+            res.getLivePageV2204ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetLivePageV2204ApplicationJSON
+            );
           }
           break;
         case [400, 404, 500].includes(httpRes?.status):
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.error = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.ErrorT
-            );
+            res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
           }
           break;
       }
@@ -150,28 +145,23 @@ export class Pages {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePagesV2200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetLivePagesV2200ApplicationJSON
-              );
+            res.getLivePagesV2200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetLivePagesV2200ApplicationJSON
+            );
           }
           break;
         case httpRes?.status == 404:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePagesV2404ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetLivePagesV2404ApplicationJSON
-              );
+            res.getLivePagesV2404ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetLivePagesV2404ApplicationJSON
+            );
           }
           break;
         case httpRes?.status == 500:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.error = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.ErrorT
-            );
+            res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
           }
           break;
       }
