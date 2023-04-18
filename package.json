@@ -1,6 +1,6 @@
 {
   "name": "openapi",
-  "version": "3.13.0",
+  "version": "3.13.1",
   "author": "vesselapi",
   "scripts": {
     "prepare": "tsc --build"
