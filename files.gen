@@ -29,4 +29,8 @@ src/sdk/models/shared/error.ts
 src/sdk/models/shared/xsitecontext.ts
 src/sdk/models/shared/browsemenuitem.ts
 src/sdk/models/shared/index.ts
+docs/sdk/README.md
+docs/globalcomponents/README.md
+docs/menu/README.md
+docs/pages/README.md
 USAGE.md
