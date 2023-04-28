@@ -40,7 +40,7 @@ export class Pages {
    * @remarks
    * Returns the live page for the specified page url and channel
    */
-  getLivePageV2(
+  async getLivePageV2(
     req: operations.GetLivePageV2Request,
     config?: AxiosRequestConfig
   ): Promise<operations.GetLivePageV2Response> {
@@ -56,50 +56,51 @@ export class Pages {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetLivePageV2Response =
-        new operations.GetLivePageV2Response({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePageV2200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.GetLivePageV2200ApplicationJSON
-            );
-          }
-          break;
-        case httpRes?.status == 204:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePageV2204ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.GetLivePageV2204ApplicationJSON
-            );
-          }
-          break;
-        case [400, 404, 500].includes(httpRes?.status):
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.GetLivePageV2Response =
+      new operations.GetLivePageV2Response({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.getLivePageV2200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.GetLivePageV2200ApplicationJSON
+          );
+        }
+        break;
+      case httpRes?.status == 204:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.getLivePageV2204ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.GetLivePageV2204ApplicationJSON
+          );
+        }
+        break;
+      case [400, 404, 500].includes(httpRes?.status):
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
@@ -108,7 +109,7 @@ export class Pages {
    * @remarks
    * Returns a list of all the live pages for the specified channels
    */
-  getLivePagesV2(
+  async getLivePagesV2(
     req: operations.GetLivePagesV2Request,
     config?: AxiosRequestConfig
   ): Promise<operations.GetLivePagesV2Response> {
@@ -124,49 +125,50 @@ export class Pages {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetLivePagesV2Response =
-        new operations.GetLivePagesV2Response({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePagesV2200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.GetLivePagesV2200ApplicationJSON
-            );
-          }
-          break;
-        case httpRes?.status == 404:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.getLivePagesV2404ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.GetLivePagesV2404ApplicationJSON
-            );
-          }
-          break;
-        case httpRes?.status == 500:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.GetLivePagesV2Response =
+      new operations.GetLivePagesV2Response({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.getLivePagesV2200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.GetLivePagesV2200ApplicationJSON
+          );
+        }
+        break;
+      case httpRes?.status == 404:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.getLivePagesV2404ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.GetLivePagesV2404ApplicationJSON
+          );
+        }
+        break;
+      case httpRes?.status == 500:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
+        }
+        break;
+    }
+
+    return res;
   }
 }

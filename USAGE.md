@@ -1,20 +1,17 @@
 <!-- Start SDK Example Usage -->
 ```typescript
-import { AxiosError } from "axios";
 import { SDK } from "openapi";
-import { GetLiveGlobalComponentsV2Request, GetLiveGlobalComponentsV2Response } from "openapi/dist/sdk/models/operations";
+import { GetLiveGlobalComponentsV2Response } from "openapi/dist/sdk/models/operations";
 
 const sdk = new SDK();
 
-const req: GetLiveGlobalComponentsV2Request = {
+sdk.globalComponents.getLiveGlobalComponentsV2({
   channels: "corrupti",
   xSiteContext: {
     account: "1234abcd5678efgh9ijklmno",
   },
-};
-
-sdk.globalComponents.getLiveGlobalComponentsV2(req).then((res: GetLiveGlobalComponentsV2Response | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetLiveGlobalComponentsV2Response) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
