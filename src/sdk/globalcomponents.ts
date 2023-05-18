@@ -56,6 +56,9 @@ export class GlobalComponents {
 
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
     const httpRes: AxiosResponse = await client.request({
       validateStatus: () => true,
