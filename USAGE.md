@@ -1,25 +1,19 @@
 <!-- Start SDK Example Usage -->
 ```typescript
-import { SDK, withSecurity} from "@fabric/xm-sdk";
-import { GetLiveGlobalComponentsV2Request, GetLiveGlobalComponentsV2Response } from "@fabric/xm-sdk/src/sdk/models/operations";
-import { AxiosError } from "axios";
-
+import { SDK } from "openapi";
+import { GetLiveGlobalComponentsV2Response } from "openapi/dist/sdk/models/operations";
 
 const sdk = new SDK();
-    
-const req: GetLiveGlobalComponentsV2Request = {
-  queryParams: {
-    channels: "sit",
-  },
-  headers: {
-    xSiteContext: {
-      account: "voluptas",
-    },
-  },
-};
 
-sdk.globalComponents.getLiveGlobalComponentsV2(req).then((res: GetLiveGlobalComponentsV2Response | AxiosError) => {
-   // handle response
+sdk.globalComponents.getLiveGlobalComponentsV2({
+  channels: "corrupti",
+  xSiteContext: {
+    account: "1234abcd5678efgh9ijklmno",
+  },
+}).then((res: GetLiveGlobalComponentsV2Response) => {
+  if (res.statusCode == 200) {
+    // handle response
+  }
 });
 ```
 <!-- End SDK Example Usage -->
