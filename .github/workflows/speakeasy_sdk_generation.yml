@@ -10,7 +10,8 @@ jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v7
     with:
-      languages: '- typescript'
+      languages: |
+        - typescript
       mode: pr
       openapi_doc_location: ./fabric.json
       publish_typescript: true
